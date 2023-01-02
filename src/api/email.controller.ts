@@ -1,0 +1,40 @@
+import {
+  Body,
+  Controller,
+  HttpCode,
+  HttpStatus,
+  InternalServerErrorException,
+  Post,
+  ServiceUnavailableException,
+} from '@nestjs/common';
+import { CommandBus } from '@nestjs/cqrs';
+import { SendTransactionalEmailCommand } from '../application/features/sendTransactionalEmail/send-transactional-email.command';
+import { TemplateNames } from '../application/email/enums/template-names.enum';
+import { TransactionalEmailRequestDto } from './dto/transactional-email-request.dto';
+import { NotFoundException } from '../application/shared/exceptions/not-found.exception';
+
+@Controller('email')
+export class EmailController {
+  constructor(private readonly _commandBus: CommandBus) {}
+
+  @Post('send-customer-christmas')
+  @HttpCode(HttpStatus.OK)
+  async sendCustomerChristmas(
+    @Body() transactionalEmailRequestDto: TransactionalEmailRequestDto,
+  ) {
+    try {
+      await this._commandBus.execute(
+        new SendTransactionalEmailCommand(
+          TemplateNames.CUSTOMER_CHRISTMAS,
+          transactionalEmailRequestDto.parameters,
+          transactionalEmailRequestDto.receivers,
+        ),
+      );
+    } catch (exception) {
+      if (exception instanceof NotFoundException) {
+        throw new ServiceUnavailableException();
+      }
+      throw new InternalServerErrorException();
+    }
+  }
+}
