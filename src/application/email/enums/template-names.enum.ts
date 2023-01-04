@@ -1,3 +1,3 @@
 export enum TemplateNames {
-  CUSTOMER_CHRISTMAS = 'tppp-customer-christmas',
+  CUSTOMER_CHRISTMAS = 'tp-customer-christmas',
 }

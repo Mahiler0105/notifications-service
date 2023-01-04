@@ -18,7 +18,7 @@ export class EmailController {
   constructor(private readonly _commandBus: CommandBus) {}
 
   @Post('send-customer-christmas')
-  @HttpCode(HttpStatus.OK)
+  @HttpCode(HttpStatus.NO_CONTENT)
   async sendCustomerChristmas(
     @Body() transactionalEmailRequestDto: TransactionalEmailRequestDto,
   ) {

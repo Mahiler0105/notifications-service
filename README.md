@@ -2,7 +2,7 @@
 
 ## Description
 
-Application for sending notifications (email, sms, etc) using the CQRS pattern, clean architecture (DDD), clean code. Exposing an Api/CLI/gRCP interface.
+Application for sending notifications (email, sms, etc) using the CQRS pattern, clean architecture (DDD), clean code. Exposing an HTTP API / CLI / gRCP interface.
 
 ## Installation
 
