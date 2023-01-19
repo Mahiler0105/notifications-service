@@ -4,8 +4,8 @@ import { ConfigService } from '@nestjs/config';
 import { CommandFactory } from 'nest-commander';
 
 async function bootstrap() {
-  // await initHttpServer();
-  await initCli();
+  await initHttpServer();
+  // await initCli();
 }
 
 async function initHttpServer() {
