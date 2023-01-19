@@ -27,6 +27,6 @@ export class SendTransactionalEmailHandler
       );
     }
     const email = new Email(templateId, command.parameters, command.receivers);
-    await this._emailService.sendEmailByTemplateId(email);
+    await this._emailService.sendEmail(email);
   }
 }

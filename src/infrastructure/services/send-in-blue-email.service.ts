@@ -1,25 +1,17 @@
 import { IEmailService } from '../../application/email/interfaces/email-service.interface';
 import { Email } from '../../application/email/models/email.model';
 import { Injectable, Scope } from '@nestjs/common';
-import { EmailProviderOptions } from '../../configuration/options/email-provider-options';
 import {
   SendSmtpEmail,
   SendSmtpEmailTo,
   TransactionalEmailsApi,
-  TransactionalEmailsApiApiKeys,
 } from '@sendinblue/client';
 
 @Injectable({ scope: Scope.TRANSIENT })
 export class SendInBlueEmailService implements IEmailService {
-  private readonly _transactionalEmailApi: TransactionalEmailsApi;
-
-  constructor(private readonly _emailProviderOptions: EmailProviderOptions) {
-    this._transactionalEmailApi = new TransactionalEmailsApi();
-    this._transactionalEmailApi.setApiKey(
-      TransactionalEmailsApiApiKeys.apiKey,
-      _emailProviderOptions.apiKey,
-    );
-  }
+  constructor(
+    private readonly _transactionalEmailApi: TransactionalEmailsApi,
+  ) {}
 
   async getTemplateIdByNameAsync(templateName: string): Promise<number | null> {
     const templates = await this._transactionalEmailApi.getSmtpTemplates();
@@ -34,7 +26,7 @@ export class SendInBlueEmailService implements IEmailService {
     return template.id;
   }
 
-  async sendEmailByTemplateId(email: Email): Promise<string> {
+  async sendEmail(email: Email): Promise<string> {
     const sendSmtpEmail = this.generateSendSmtpEmail(email);
     const createdSmtpEmail = await this._transactionalEmailApi.sendTransacEmail(
       sendSmtpEmail,

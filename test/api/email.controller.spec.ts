@@ -34,10 +34,9 @@ describe('EmailController', () => {
     expect(sut).toBeDefined();
   });
 
-  it('should be not throw Exception', async () => {
+  it('should be not throw Exception in sendCustomerChristmas method', async () => {
     // Arrange
     const commandBusExecute = jest.spyOn(commandBus, 'execute');
-
     commandBusExecute.mockResolvedValue(Promise.resolve(1));
 
     // Act
@@ -55,7 +54,7 @@ describe('EmailController', () => {
     });
   });
 
-  it('should be throw Service Unavailable Exception', async () => {
+  it('should be throw Service Unavailable Exception in sendCustomerChristmas method', async () => {
     // Arrange
     const commandBusExecute = jest.spyOn(commandBus, 'execute');
 
@@ -80,7 +79,7 @@ describe('EmailController', () => {
     });
   });
 
-  it('should be throw Internal Server Error Exception', async () => {
+  it('should be throw Internal Server Error Exception in sendCustomerChristmas method', async () => {
     // Arrange
     const commandBusExecute = jest.spyOn(commandBus, 'execute');
 
