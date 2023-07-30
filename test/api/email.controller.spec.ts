@@ -34,18 +34,18 @@ describe('EmailController', () => {
     expect(sut).toBeDefined();
   });
 
-  it('should be not throw Exception in sendCustomerChristmas method', async () => {
+  it('should be not throw Exception in sendCustomerChristmasEmail method', async () => {
     // Arrange
     const commandBusExecute = jest.spyOn(commandBus, 'execute');
     commandBusExecute.mockResolvedValue(Promise.resolve(1));
 
     // Act
     const currentResult = async () => {
-      await sut.sendCustomerChristmas(transactionalEmailRequestDto);
+      await sut.sendCustomerChristmasEmail(transactionalEmailRequestDto);
     };
 
     // Assert
-    await expect(currentResult).not.toThrowError();
+    expect(currentResult).not.toThrowError();
     expect(commandBusExecute).toHaveBeenCalled();
     expect(commandBusExecute).toHaveBeenCalledWith({
       parameters: transactionalEmailRequestDto.parameters,
@@ -54,7 +54,7 @@ describe('EmailController', () => {
     });
   });
 
-  it('should be throw Service Unavailable Exception in sendCustomerChristmas method', async () => {
+  it('should be throw Service Unavailable Exception in sendCustomerChristmasEmail method', async () => {
     // Arrange
     const commandBusExecute = jest.spyOn(commandBus, 'execute');
 
@@ -66,7 +66,7 @@ describe('EmailController', () => {
 
     // Act
     const currentResult = async () => {
-      await sut.sendCustomerChristmas(transactionalEmailRequestDto);
+      await sut.sendCustomerChristmasEmail(transactionalEmailRequestDto);
     };
 
     // Assert
@@ -79,7 +79,7 @@ describe('EmailController', () => {
     });
   });
 
-  it('should be throw Internal Server Error Exception in sendCustomerChristmas method', async () => {
+  it('should be throw Internal Server Error Exception in sendCustomerChristmasEmail method', async () => {
     // Arrange
     const commandBusExecute = jest.spyOn(commandBus, 'execute');
 
@@ -87,7 +87,7 @@ describe('EmailController', () => {
 
     // Act
     const currentResult = async () => {
-      await sut.sendCustomerChristmas(transactionalEmailRequestDto);
+      await sut.sendCustomerChristmasEmail(transactionalEmailRequestDto);
     };
 
     // Assert
