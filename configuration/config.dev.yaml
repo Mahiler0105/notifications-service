@@ -6,4 +6,3 @@ grpc:
 providers:
   email:
     apiKey: 'xxxx'
-
