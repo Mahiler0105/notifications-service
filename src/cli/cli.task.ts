@@ -11,7 +11,7 @@ import {
 } from './helpers/spinner.helper';
 
 @Command({
-  name: 'send-email',
+  name: 'send-customer-christmas-email',
   options: { isDefault: false },
 })
 export class CliTask extends CommandRunner {
@@ -47,12 +47,7 @@ export class CliTask extends CommandRunner {
   }
 
   async run(inputs: string[], options: Record<string, any>): Promise<void> {
-    figlet.text('Notifications Service', async (error, title) => {
-      if (error) {
-        console.log('Something went wrong...');
-        return;
-      }
-
+    figlet.text('Notification Service', async (error: any, title: string) => {
       console.log(title);
       await this.sendEmail(options);
     });

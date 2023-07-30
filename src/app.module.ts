@@ -4,6 +4,7 @@ import { ApplicationModule } from './application/application.module';
 import { InfrastructureModule } from './infrastructure/infrastructure.module';
 import { ConfigurationModule } from './configuration/configuration.module';
 import { CliModule } from './cli/cli.module';
+import { GrpcModule } from './grpc/grpc.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { CliModule } from './cli/cli.module';
     ApplicationModule,
     InfrastructureModule,
     ConfigurationModule,
+    GrpcModule,
   ],
 })
 export class AppModule {}

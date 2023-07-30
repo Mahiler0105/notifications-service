@@ -17,9 +17,9 @@ import { NotFoundException } from '../application/shared/exceptions/not-found.ex
 export class EmailController {
   constructor(private readonly _commandBus: CommandBus) {}
 
-  @Post('send-customer-christmas')
+  @Post('customer-christmas')
   @HttpCode(HttpStatus.NO_CONTENT)
-  async sendCustomerChristmas(
+  async sendCustomerChristmasEmail(
     @Body() transactionalEmailRequestDto: TransactionalEmailRequestDto,
   ) {
     try {

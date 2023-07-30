@@ -1,0 +1,21 @@
+// email/email.proto
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/any.proto";
+
+package email;
+
+service EmailService {
+  rpc SendCustomerChristmasEmail (TransactionalEmail) returns (google.protobuf.Empty) {}
+}
+
+message TransactionalEmail {
+  map<string, string> parameters = 1;
+  repeated Receiver receivers = 2;
+}
+
+message Receiver {
+  string email = 1;
+  string name = 2;
+}
