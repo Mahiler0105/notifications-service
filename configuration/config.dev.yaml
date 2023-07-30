@@ -5,5 +5,5 @@ grpc:
   port: 5000
 providers:
   email:
-    apiKey: 'xxxx'
+    apiKey: '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'
 

@@ -1,5 +1,5 @@
-import { IEmailService } from '../../application/email/interfaces/email-service.interface';
-import { Email } from '../../application/email/models/email.model';
+import { IEmailService } from '../../domain/email/interfaces/email-service.interface';
+import { Email } from '../../domain/email/models/email.model';
 import { Injectable, Scope } from '@nestjs/common';
 import {
   SendSmtpEmail,

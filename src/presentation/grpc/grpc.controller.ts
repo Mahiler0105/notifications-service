@@ -2,8 +2,8 @@ import { Controller } from '@nestjs/common';
 import { GrpcMethod, RpcException } from '@nestjs/microservices';
 import { TransactionalEmailRequestDto } from '../api/dto/transactional-email-request.dto';
 import { CommandBus } from '@nestjs/cqrs';
-import { SendTransactionalEmailCommand } from '../application/features/sendTransactionalEmail/send-transactional-email.command';
-import { TemplateNames } from '../application/email/enums/template-names.enum';
+import { SendTransactionalEmailCommand } from '../../application/features/sendTransactionalEmail/send-transactional-email.command';
+import { TemplateNames } from '../../domain/email/enums/template-names.enum';
 
 @Controller()
 export class GrpcController {
