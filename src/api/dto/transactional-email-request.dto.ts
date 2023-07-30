@@ -1,4 +1,4 @@
-import { Receiver } from '../../../domain/email/models/receiver.model';
+import { Receiver } from '../../application/email/models/receiver.model';
 
 export class TransactionalEmailRequestDto {
   public parameters: Record<string, unknown>;

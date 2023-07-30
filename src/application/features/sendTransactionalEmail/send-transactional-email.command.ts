@@ -1,4 +1,4 @@
-import { Receiver } from '../../../domain/email/models/receiver.model';
+import { Receiver } from '../../email/models/receiver.model';
 
 export class SendTransactionalEmailCommand {
   constructor(
