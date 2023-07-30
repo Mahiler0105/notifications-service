@@ -5,5 +5,4 @@ grpc:
   port: 5000
 providers:
   email:
-    apiKey: ''
-
+    apiKey: 'xxxx'

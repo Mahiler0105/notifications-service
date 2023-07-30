@@ -25,8 +25,8 @@ async function initCli() {
 }
 
 async function initGrpcServer(configService: ConfigService) {
-  const grpcPort = configService.get('grpc.port', 5000);
-  const grpcHost = configService.get('grpc.host');
+  const grpcPort = configService.get('grpc:port', 5000);
+  const grpcHost = configService.get('grpc:host');
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
     AppModule,
     {

@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { EmailProviderOptions } from '../../../src/infrastructure/configuration/options/email-provider-options';
+import { EmailProviderOptions } from '../../../src/configuration/options/email-provider-options';
 import { EmailProviderOptionsMock } from '../email-provider-options.mock';
 
 @Module({
