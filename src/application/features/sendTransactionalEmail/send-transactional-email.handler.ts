@@ -4,8 +4,8 @@ import { Inject } from '@nestjs/common';
 import {
   IEmailService,
   EmailServiceToken,
-} from '../../../domain/email/interfaces/email-service.interface';
-import { Email } from '../../../domain/email/models/email.model';
+} from '../../email/interfaces/email-service.interface';
+import { Email } from '../../email/models/email.model';
 import { NotFoundException } from '../../shared/exceptions/not-found.exception';
 
 @CommandHandler(SendTransactionalEmailCommand)

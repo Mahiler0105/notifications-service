@@ -1,14 +1,14 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { EmailController } from '../../src/presentation/api/email.controller';
+import { EmailController } from '../../src/api/email.controller';
 import { CommandBus, CqrsModule } from '@nestjs/cqrs';
-import { TransactionalEmailRequestDto } from '../../src/presentation/api/dto/transactional-email-request.dto';
+import { TransactionalEmailRequestDto } from '../../src/api/dto/transactional-email-request.dto';
 import { NotFoundException } from '../../src/application/shared/exceptions/not-found.exception';
-import { TemplateNames } from '../../src/domain/email/enums/template-names.enum';
+import { TemplateNames } from '../../src/application/email/enums/template-names.enum';
 import {
   InternalServerErrorException,
   ServiceUnavailableException,
 } from '@nestjs/common';
-import { Receiver } from '../../src/domain/email/models/receiver.model';
+import { Receiver } from '../../src/application/email/models/receiver.model';
 
 describe('EmailController', () => {
   let sut: EmailController;
