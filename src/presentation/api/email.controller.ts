@@ -8,10 +8,10 @@ import {
   ServiceUnavailableException,
 } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
-import { SendTransactionalEmailCommand } from '../application/features/sendTransactionalEmail/send-transactional-email.command';
-import { TemplateNames } from '../application/email/enums/template-names.enum';
+import { SendTransactionalEmailCommand } from '../../application/features/sendTransactionalEmail/send-transactional-email.command';
+import { TemplateNames } from '../../domain/email/enums/template-names.enum';
 import { TransactionalEmailRequestDto } from './dto/transactional-email-request.dto';
-import { NotFoundException } from '../application/shared/exceptions/not-found.exception';
+import { NotFoundException } from '../../application/shared/exceptions/not-found.exception';
 
 @Controller('email')
 export class EmailController {

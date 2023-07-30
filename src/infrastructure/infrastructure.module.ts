@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
 import { SendInBlueEmailService } from './services/send-in-blue-email.service';
-import { EmailServiceToken } from '../application/email/interfaces/email-service.interface';
-import { ConfigurationModule } from '../configuration/configuration.module';
+import { EmailServiceToken } from '../domain/email/interfaces/email-service.interface';
+import { ConfigurationModule } from './configuration/configuration.module';
 import {
   TransactionalEmailsApi,
   TransactionalEmailsApiApiKeys,
 } from '@sendinblue/client';
-import { EmailProviderOptions } from '../configuration/options/email-provider-options';
+import { EmailProviderOptions } from './configuration/options/email-provider-options';
 
 @Module({
   providers: [
