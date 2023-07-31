@@ -6,3 +6,7 @@ grpc:
 providers:
   email:
     apiKey: 'xxxx'
+  push-notification:
+    projectId: bloc-exercies
+
+

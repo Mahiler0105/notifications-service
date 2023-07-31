@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { SendInBlueEmailService } from '../../../src/infrastructure/services/send-in-blue-email.service';
-import { EmailServiceToken } from '../../../src/application/email/interfaces/email-service.interface';
+import { EmailServiceToken } from '../../../src/domain/email/interfaces/email-service.interface';
 import { ConfigurationModuleMock } from '../../mocks/modules/configuration.module.mock';
 import {
   CreateSmtpEmail,
@@ -10,8 +10,8 @@ import {
   SendSmtpEmailTo,
   TransactionalEmailsApi,
 } from '@sendinblue/client';
-import { Email } from '../../../src/application/email/models/email.model';
-import { Receiver } from '../../../src/application/email/models/receiver.model';
+import { Email } from '../../../src/domain/email/models/email.model';
+import { Receiver } from '../../../src/domain/email/models/receiver.model';
 
 describe('SendInBlueEmailService', () => {
   let sut: SendInBlueEmailService;

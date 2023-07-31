@@ -1,7 +1,7 @@
 import { CommandBus } from '@nestjs/cqrs';
-import { SendTransactionalEmailCommand } from '../application/features/sendTransactionalEmail/send-transactional-email.command';
-import { TemplateNames } from '../application/email/enums/template-names.enum';
-import { Receiver } from '../application/email/models/receiver.model';
+import { SendTransactionalEmailCommand } from '../../application/features/sendTransactionalEmail/send-transactional-email.command';
+import { TemplateNames } from '../../domain/email/enums/template-names.enum';
+import { Receiver } from '../../domain/email/models/receiver.model';
 import { Command, CommandRunner, Option } from 'nest-commander';
 import * as figlet from 'figlet';
 import {
