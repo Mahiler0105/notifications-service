@@ -7,11 +7,39 @@ import {
   TransactionalEmailsApiApiKeys,
 } from '@sendinblue/client';
 import { EmailProviderOptions } from './configuration/options/email-provider-options';
+import {
+  FcmPushNotificationService,
+  GoogleJWTToken,
+} from './services/fcm-push-notification.service';
+import { PushNotificationServiceToken } from '../domain/push-notifications/interfaces/push-notification-service.interface';
+import { JWT } from 'google-auth-library';
+import * as serviceAccount from '../../configuration/firebase-adminsdk.json';
+
+const services = [SendInBlueEmailService, FcmPushNotificationService];
+const dependencyInversionServices = [
+  { provide: EmailServiceToken, useExisting: SendInBlueEmailService },
+  {
+    provide: PushNotificationServiceToken,
+    useExisting: FcmPushNotificationService,
+  },
+];
 
 @Module({
   providers: [
-    SendInBlueEmailService,
-    { provide: EmailServiceToken, useExisting: SendInBlueEmailService },
+    ...services,
+    ...dependencyInversionServices,
+    {
+      provide: GoogleJWTToken,
+      useFactory: () => {
+        return new JWT(
+          serviceAccount.client_email,
+          null,
+          serviceAccount.private_key,
+          [FcmPushNotificationService.MESSAGING_SCOPE],
+          null,
+        );
+      },
+    },
     {
       inject: [EmailProviderOptions],
       provide: TransactionalEmailsApi,
@@ -25,7 +53,7 @@ import { EmailProviderOptions } from './configuration/options/email-provider-opt
       },
     },
   ],
-  exports: [EmailServiceToken],
+  exports: [EmailServiceToken, PushNotificationServiceToken],
   imports: [ConfigurationModule],
 })
 export class InfrastructureModule {}

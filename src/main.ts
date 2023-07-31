@@ -4,17 +4,20 @@ import { ConfigService } from '@nestjs/config';
 import { CommandFactory } from 'nest-commander';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { join } from 'path';
+import { INestApplication } from '@nestjs/common';
 
 async function bootstrap() {
-  const appContext = await NestFactory.createApplicationContext(AppModule);
-  const configService = appContext.get(ConfigService);
+  const app = await NestFactory.create(AppModule);
+  const configService = app.get(ConfigService);
   // await initCli();
-  await initHttpServer(configService);
-  await initGrpcServer(configService);
+  await initHttpServer(app, configService);
+  await initGrpcServer(app, configService);
 }
 
-async function initHttpServer(configService: ConfigService) {
-  const app = await NestFactory.create(AppModule);
+async function initHttpServer(
+  app: INestApplication,
+  configService: ConfigService,
+) {
   await app.listen(configService.get('http.port', 3000));
 }
 
@@ -24,21 +27,23 @@ async function initCli() {
   });
 }
 
-async function initGrpcServer(configService: ConfigService) {
+async function initGrpcServer(
+  app: INestApplication,
+  configService: ConfigService,
+) {
   const grpcPort = configService.get('grpc.port', 5000);
   const grpcHost = configService.get('grpc.host');
-  const app = await NestFactory.createMicroservice<MicroserviceOptions>(
-    AppModule,
-    {
-      transport: Transport.GRPC,
-      options: {
-        url: `${grpcHost}:${grpcPort}`,
-        package: 'email',
-        protoPath: join(__dirname, 'email/email.proto'),
-      },
+  const microserviceOptions: MicroserviceOptions = {
+    transport: Transport.GRPC,
+    options: {
+      url: `${grpcHost}:${grpcPort}`,
+      package: 'email',
+      protoPath: join(__dirname, '../../email', 'email.proto'),
     },
-  );
-  await app.listen();
+  };
+
+  const microservice = app.connectMicroservice(microserviceOptions);
+  await microservice.listen();
 }
 
 bootstrap();
