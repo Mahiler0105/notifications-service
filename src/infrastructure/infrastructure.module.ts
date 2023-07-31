@@ -1,19 +1,19 @@
 import { Module } from '@nestjs/common';
 import { SendInBlueEmailService } from './services/send-in-blue-email.service';
-import { EmailServiceToken } from '../domain/email/interfaces/email-service.interface';
-import { ConfigurationModule } from './configuration/configuration.module';
-import {
-  TransactionalEmailsApi,
-  TransactionalEmailsApiApiKeys,
-} from '@sendinblue/client';
-import { EmailProviderOptions } from './configuration/options/email-provider-options';
 import {
   FcmPushNotificationService,
   GoogleJWTToken,
 } from './services/fcm-push-notification.service';
 import { PushNotificationServiceToken } from '../domain/push-notifications/interfaces/push-notification-service.interface';
-import { JWT } from 'google-auth-library';
+import { EmailServiceToken } from '../domain/email/interfaces/email-service.interface';
+import { EmailProviderOptions } from './configuration/options/email-provider-options';
+import { ConfigurationModule } from './configuration/configuration.module';
 import * as serviceAccount from '../../configuration/firebase-adminsdk.json';
+import {
+  TransactionalEmailsApi,
+  TransactionalEmailsApiApiKeys,
+} from '@sendinblue/client';
+import { JWT } from 'google-auth-library';
 
 const services = [SendInBlueEmailService, FcmPushNotificationService];
 const dependencyInversionServices = [
